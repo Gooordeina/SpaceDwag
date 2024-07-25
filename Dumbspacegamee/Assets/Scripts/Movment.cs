@@ -12,6 +12,7 @@ public class Movment : MonoBehaviour
     public float distance;
     bool blackholing = false;
     public GameObject centre;
+    float interum;
     
     Vector3 direction;
     // Start is called before the first frame update
@@ -21,25 +22,33 @@ public class Movment : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        interum = 0;
         foreach (GameObject planet in planets)
         {
             float dist = (transform.position - planet.transform.position).magnitude;
             if (dist < 100)
             {
-                
+                float horizontal = Input.GetAxisRaw("Horizontal");
+                float vertical = Input.GetAxisRaw("Vertical");
+                self.velocity = transform.forward * speed * vertical + transform.right * speed * horizontal + planet.transform.GetComponent<Rigidbody>().velocity;    
+                blackholing = false;
                 transform.parent = planet.transform;
+                interum+=1;
+                speed = 50;
             }
+            
         }
-
+        if(interum == 0)
+        {
+                float horizontal = Input.GetAxisRaw("Horizontal");
+                float vertical = Input.GetAxisRaw("Vertical");
+                self.velocity = transform.forward * speed * vertical + transform.right * speed * horizontal;    
+                blackholing = false;
+                speed = 100;
+        }
         if (distance >21)
         {
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
-            self.AddForce(transform.forward * speed * vertical, ForceMode.Force);
-            self.AddForce(transform.right * speed * horizontal, ForceMode.Force);
 
-            
-            blackholing = false;
         }
         if(distance <=  21 && distance  > 1)
         {

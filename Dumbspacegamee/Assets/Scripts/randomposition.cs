@@ -37,7 +37,7 @@ public class randomposition : MonoBehaviour
         else{
             zpnn = 1;
         }
-        transform.localPosition = new Vector3(Random.Range(0.6f,0.8f) * xpnn,Random.Range(0.6f,0.8f) * ypnn,Random.Range(0.6f,0.8f) * zpnn);
+        transform.localPosition = new Vector3(Random.Range(0.3f,0.35f) * xpnn,Random.Range(0.3f,0.35f) * ypnn,Random.Range(0.3f,0.35f) * zpnn);
     }
 
 
