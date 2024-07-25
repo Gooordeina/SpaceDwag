@@ -31,7 +31,7 @@ public class Gravity : MonoBehaviour
                     force = force * multiplier;
                 }
                 
-                self.AddForce(dir * force, ForceMode.Force);
+                self.AddForce(dir * force * 10000, ForceMode.Force);
                 
             }
             
