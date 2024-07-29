@@ -9,6 +9,7 @@ public class FlagPickUp : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        Debug.Log("gigg");
         if (col.gameObject.tag == "CO")
         {
             Destroy (col.gameObject);

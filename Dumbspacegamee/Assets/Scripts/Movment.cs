@@ -26,15 +26,14 @@ public class Movment : MonoBehaviour
         foreach (GameObject planet in planets)
         {
             float dist = (transform.position - planet.transform.position).magnitude;
-            if (dist < 100)
+            if (dist < planet.GetComponent<Gravity>().DetectiveRadius)
             {
                 float horizontal = Input.GetAxisRaw("Horizontal");
                 float vertical = Input.GetAxisRaw("Vertical");
                 self.velocity = transform.forward * speed * vertical + transform.right * speed * horizontal + planet.transform.GetComponent<Rigidbody>().velocity;    
                 blackholing = false;
-                transform.parent = planet.transform;
                 interum+=1;
-                speed = 50;
+                speed = 15;
             }
             
         }

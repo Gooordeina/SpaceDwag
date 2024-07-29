@@ -8,6 +8,8 @@ public class Gravity : MonoBehaviour
     public float multiplier;
     public bool timemain;
     public List<GameObject> blacklst;
+
+    public float DetectiveRadius;
     public float selfmass = 10;
     public bool moon;
     Rigidbody self;
