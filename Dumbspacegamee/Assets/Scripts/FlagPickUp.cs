@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FlagPickUp : MonoBehaviour
 {
-    public float Score;
+
+    public float Flag;
     public float Coins;
 
     void OnCollisionEnter(Collision col)
@@ -13,7 +14,7 @@ public class FlagPickUp : MonoBehaviour
         if (col.gameObject.tag == "CO")
         {
             Destroy (col.gameObject);
-            Score += 1;
+            Flag += 1;
         }
 
          if (col.gameObject.tag == "Coin")

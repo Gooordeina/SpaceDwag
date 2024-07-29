@@ -76,4 +76,18 @@ public class Movment : MonoBehaviour
         blackholing = true;
         bc = blackholecentre;
     }
+
+     void OnCollisionEnter(Collision col)
+     {
+        if (col.gameObject.tag == "CO")
+        {
+            Scoresystem.scoreCount += 1;
+        }
+
+        if (col.gameObject.tag == "Coin")
+        {
+            Coinsystem.coinCount += 1;
+        }
+     }
+     
 }
