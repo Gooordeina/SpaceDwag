@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Scoresystem : MonoBehaviour
 {
     public Text scoreText;
-    public Text coinText;
+
     public static int scoreCount;
     public static int coinCount;
     // Start is called before the first frame update
@@ -19,6 +19,6 @@ public class Scoresystem : MonoBehaviour
     void Update()
     {
         scoreText.text = "Flag: " + Mathf.Round(scoreCount);
-        coinText.text = "Coin: " + Mathf.Round(coinCount);
+    
     }
 }

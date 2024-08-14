@@ -7,6 +7,8 @@ public class randomposition : MonoBehaviour
 {
     public bool velocity;
     public GameObject player;
+
+    public Vector3 planetscale;
     Rigidbody self;
     public bool coin;
     public bool flag;
@@ -44,11 +46,11 @@ public class randomposition : MonoBehaviour
         else{
             zpnn = 1;
         }
-        transform.localPosition = new Vector3(Random.Range(0.3f,0.4f) * xpnn,Random.Range(0.3f,0.4f) * ypnn,Random.Range(0.3f,0.4f) * zpnn);
+        transform.localPosition = new Vector3(Random.Range(planetscale.x,planetscale.x*1.1f) * xpnn, Random.Range(planetscale.x,planetscale.x*1.1f) * ypnn,Random.Range(planetscale.x,planetscale.x*1.1f) * zpnn);  
         }
         if(coin)
         {
-                    self = transform.GetComponent<Rigidbody>();
+        self = transform.GetComponent<Rigidbody>();
         float xpnn = 0;
         float ypnn = 0;
         float zpnn = 0;
@@ -78,7 +80,7 @@ public class randomposition : MonoBehaviour
         else{
             zpnn = 1;
         }
-        transform.localPosition = new Vector3(Random.Range(0.3f,0.4f) * xpnn,Random.Range(0.3f,0.4f) * ypnn,Random.Range(0.3f,0.4f) * zpnn);
+        transform.localPosition = new Vector3(Random.Range(planetscale.x,planetscale.x*1.1f) * xpnn, Random.Range(planetscale.x,planetscale.x*1.1f) * ypnn,Random.Range(planetscale.x,planetscale.x*1.1f) * zpnn);
         }
 
 
