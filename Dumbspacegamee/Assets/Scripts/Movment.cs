@@ -7,20 +7,30 @@ using UnityEngine.Rendering.Universal;
 public class Movment : MonoBehaviour
 {
     public float basespeed;
+
     public float speed;
     Rigidbody self;
     Vector3 bc;
+    public Color thrustcolour;
+    public Color normalcolour;
     public List<GameObject> planets;
     float sockspeed;
+    public Vector3 dirc;
+
+    public Material mymat;
+    public  Vector3 dirv;
+
+    public float dirdif;
+    public float borderradius;
     public float distance;
     public float accelerateamount;
     bool blackholing = false;
-    Volume vol;
+    [SerializeField] private Volume vol;
     public GameObject centre;
     float interum;
-    public GameObject volume;
 
-    ChromaticAberration chromab;
+
+
     
     Vector3 direction;
     // Start is called before the first frame update
@@ -41,16 +51,29 @@ public class Movment : MonoBehaviour
             if (dist < planet.GetComponent<Gravity>().DetectiveRadius)
             {
                 basespeed = 15;
-                if(Input.GetKey(KeyCode.LeftShift) && speed < 50)
+                if(Input.GetKey(KeyCode.LeftShift) )
                 {
-                    speed += accelerateamount;
-
+                    if(speed < 50)
+                    {
+                        speed += accelerateamount;
+                    }
+                    if(vol.profile.TryGet(out ChromaticAberration chromab))
+                    {
+                        chromab.intensity.value = 1;
+                    }
+                    mymat.SetColor("_Emission", thrustcolour * 20);
                 }
             else{
                 if(speed > basespeed)
                 {
                     speed -= accelerateamount;
+                    
                 }
+                    if(vol.profile.TryGet(out ChromaticAberration chromab))
+                    {
+                        chromab.intensity.value = 0.25f;
+                    }
+            mymat.SetColor("_Emission", normalcolour * 20);
             
             }
                 float horizontal = Input.GetAxisRaw("Horizontal");
@@ -64,21 +87,46 @@ public class Movment : MonoBehaviour
         if(interum == 0)
         {
              basespeed = 50;
-            if(Input.GetKey(KeyCode.LeftShift) && speed < 200)
+                if(Input.GetKey(KeyCode.LeftShift) )
                 {
-            speed += accelerateamount;
+                    if(speed < 200)
+                    {
+                        speed += accelerateamount;
+                    }
+                    
+                    if(vol.profile.TryGet(out ChromaticAberration chromab))
+                    {
+                        chromab.intensity.value = 1;
+                    }
+                    mymat.SetColor("_Emission", thrustcolour * 20);
                 }
             else{
-                if(speed > basespeed)
-                {
-                    speed -= accelerateamount;
-                }
+                    if(speed > basespeed)
+                    {
+                        speed -= accelerateamount;
+                        
+                    }
+                    if(vol.profile.TryGet(out ChromaticAberration chromab))
+                    {
+                        chromab.intensity.value = 0.25f;
+                    }
+                    mymat.SetColor("_Emission", normalcolour * 20);
+                    
             
-            }
+                }
+            dirc = transform.position.normalized;
+            dirv = self.velocity.normalized;
+            dirdif = (dirc-dirv).magnitude;
+            if(transform.position.magnitude > borderradius && dirdif <= 1)
+                {
+                    speed = basespeed * 1/(transform.position.magnitude - borderradius);
+                }
+
                 float horizontal = Input.GetAxisRaw("Horizontal");
-                float vertical = Input.GetAxisRaw("Vertical");
-                self.velocity = transform.forward * speed * vertical + transform.right * speed * horizontal;    
-                blackholing = false;
+                    float vertical = Input.GetAxisRaw("Vertical");
+                    self.velocity = transform.forward * speed * vertical + transform.right * speed * horizontal;    
+                    blackholing = false;
+
                
         }
         if (distance >21)
@@ -102,8 +150,6 @@ public class Movment : MonoBehaviour
         Vector3 direction2 = bc - transform.position;
         distance = direction2.magnitude;
         
-        vol = volume.GetComponent<Volume>();
-        vol.profile.TryGet(out chromab);
 
     }
     public void blackholed(float suckspeed, Vector3 blackholecentre)
@@ -125,6 +171,10 @@ public class Movment : MonoBehaviour
         {
             Coinsystem.coinCount += 1;
         }
+     }
+     void hyperdrive()
+     {
+
      }
      
 }
