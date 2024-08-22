@@ -6,12 +6,8 @@ using UnityEngine.UI;
 public class Coinsystem : MonoBehaviour
 {
     public Text coinText;
-    public static int coinCount;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int coinCount;
+   
 
     // Update is called once per frame
     void Update()

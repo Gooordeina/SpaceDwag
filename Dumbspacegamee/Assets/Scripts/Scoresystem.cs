@@ -7,14 +7,9 @@ public class Scoresystem : MonoBehaviour
 {
     public Text scoreText;
 
-    public static int scoreCount;
-    public static int coinCount;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    public int scoreCount;
+    
+  
     // Update is called once per frame
     void Update()
     {

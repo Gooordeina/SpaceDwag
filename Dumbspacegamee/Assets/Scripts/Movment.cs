@@ -160,18 +160,8 @@ public class Movment : MonoBehaviour
         bc = blackholecentre;
     }
 
-     void OnCollisionEnter(Collision col)
-     {
-        if (col.gameObject.tag == "CO")
-        {
-            Scoresystem.scoreCount += 1;
-        }
 
-        if (col.gameObject.tag == "Coin")
-        {
-            Coinsystem.coinCount += 1;
-        }
-     }
+     
      void hyperdrive()
      {
 
