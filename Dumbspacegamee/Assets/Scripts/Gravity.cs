@@ -10,12 +10,12 @@ public class Gravity : MonoBehaviour
     public List<GameObject> blacklst;
 
     public float DetectiveRadius;
-    public float selfmass = 10;
+    public float selfmass = 10; 
     public bool moon;
     Rigidbody self;
     private void Start()
     {
-        self = transform.GetComponent<Rigidbody>();
+        self = transform.GetComponent<Rigidbody>(); 
         self.velocity = initalv;
     }
     void FixedUpdate()
@@ -39,6 +39,7 @@ public class Gravity : MonoBehaviour
             
 
         }
+
     }
     private void Update()
     {

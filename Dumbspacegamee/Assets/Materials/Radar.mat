@@ -41,7 +41,7 @@ Material:
     - _Blpoomabout: 2.18
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Radius: 0.5
+    - _Radius: -0.25
     - _THICKNESS: 0.01
     m_Colors: []
   m_BuildTextureStacks: []

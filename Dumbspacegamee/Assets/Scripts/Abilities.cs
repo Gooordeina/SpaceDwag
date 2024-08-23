@@ -9,7 +9,11 @@ public class Abilities : MonoBehaviour
     public Transform lookobject;
     float blackholetimer = 36;
     float d;
+    public GameObject glowparticle;
     public GameObject player;
+
+    public GameObject planets;
+    public GameObject radarparticlees;
 
     public float acelerationspeed = 50;
     private void Start()
@@ -26,6 +30,10 @@ public class Abilities : MonoBehaviour
         }
         Debug.Log(blackholetimer);
 
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            radar();
+        }
     }
 
     // Update is called once per frame
@@ -38,6 +46,22 @@ public class Abilities : MonoBehaviour
         move.blackholed(acelerationspeed, blackhole.transform.position);
         lookobject.right = transform.forward;
         blackhole.gameObject.SetActive(true);
+    }
+    void radar()
+    {
+        foreach(Transform planet in planets.transform)
+        {
+
+            float dist = (transform.position - planet.transform.position).magnitude;
+            if(dist < 1000)
+            {
+                GameObject particle = Instantiate(glowparticle, planet.transform);
+                particle.transform.position = planet.transform.position;
+            }
+
+        }
+        GameObject radarparticle = Instantiate(radarparticlees);
+        radarparticle.transform.position = transform.position;
     }
 
 }
