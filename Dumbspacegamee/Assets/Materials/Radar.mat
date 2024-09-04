@@ -20,7 +20,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _Offset
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -39,11 +39,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _Blpoomabout: 2.18
+    - _Offset: -2.72
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Radius: -0.25
     - _THICKNESS: 0.01
-    m_Colors: []
+    - _frenselpower: 1.61
+    m_Colors:
+    - _Emission: {r: 0, g: 6.8928976, b: 11.615994, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8554175797379308314
 MonoBehaviour:

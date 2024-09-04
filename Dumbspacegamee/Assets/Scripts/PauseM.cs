@@ -10,9 +10,8 @@ public class PauseM : MonoBehaviour
 
     public GameObject PauseUI;
 
-    public GameObject CoinCount;
 
-    public GameObject ScoreCount;
+    public GameObject objectivesystem;
 
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float CDTime;
@@ -82,12 +81,11 @@ public class PauseM : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        FlagPickUp fp = objectivesystem.GetComponent<FlagPickUp>();
+        fp.Coins = 0;
+        fp.Flag = 0;
         Resume();
-        Scoresystem sco = ScoreCount.GetComponent<Scoresystem>();
-        sco.scoreCount = 0;
-        CoinCount.GetComponent<Coinsystem>();
-        Coinsystem coi = CoinCount.GetComponent<Coinsystem>();
-        coi.coinCount = 0;
+
     }
 
 }

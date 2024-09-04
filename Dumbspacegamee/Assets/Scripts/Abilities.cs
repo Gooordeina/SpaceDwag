@@ -11,7 +11,7 @@ public class Abilities : MonoBehaviour
     float d;
     public GameObject glowparticle;
     public GameObject player;
-
+    public float Radarange = 500;
     public GameObject planets;
     public GameObject radarparticlees;
 
@@ -53,7 +53,7 @@ public class Abilities : MonoBehaviour
         {
 
             float dist = (transform.position - planet.transform.position).magnitude;
-            if(dist < 1000)
+            if(dist < Radarange)
             {
                 GameObject particle = Instantiate(glowparticle, planet.transform);
                 particle.transform.position = planet.transform.position;

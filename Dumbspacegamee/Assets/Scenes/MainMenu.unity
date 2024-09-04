@@ -510,6 +510,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planets
       objectReference: {fileID: 0}
+    - target: {fileID: 8434248401191167048, guid: ec5fe21c2d84c1c40b4646c7ce013905,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1462,6 +1467,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sun
       objectReference: {fileID: 0}
+    - target: {fileID: 6566331245991228281, guid: be0644920e027024ea595d88e89abefd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9149893572568161676, guid: be0644920e027024ea595d88e89abefd,
         type: 3}
       propertyPath: m_RootOrder
@@ -2071,7 +2081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: 0}
+  m_AnchoredPosition: {x: 3.0000153, y: 0}
   m_SizeDelta: {x: 0, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &569794545948148137
