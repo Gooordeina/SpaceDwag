@@ -48,7 +48,10 @@ PlayerSettings:
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 1
+<<<<<<< HEAD:DIGITECHgame/ProjectSettings/ProjectSettings.asset
   unsupportedMSAAFallback: 0
+=======
+>>>>>>> 697a2ef2f3e6983c2e6efc3af4078a339e7c9935:Dumbspacegamee/ProjectSettings/ProjectSettings.asset
   m_SpriteBatchVertexThreshold: 300
   m_MTRendering: 1
   mipStripping: 0
@@ -128,7 +131,10 @@ PlayerSettings:
   switchNVNMaxPublicTextureIDCount: 0
   switchNVNMaxPublicSamplerIDCount: 0
   switchNVNGraphicsFirmwareMemory: 32
+<<<<<<< HEAD:DIGITECHgame/ProjectSettings/ProjectSettings.asset
   switchMaxWorkerMultiple: 8
+=======
+>>>>>>> 697a2ef2f3e6983c2e6efc3af4078a339e7c9935:Dumbspacegamee/ProjectSettings/ProjectSettings.asset
   stadiaPresentMode: 0
   stadiaTargetFramerate: 0
   vulkanNumSwapchainBuffers: 3
@@ -137,8 +143,11 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
+<<<<<<< HEAD:DIGITECHgame/ProjectSettings/ProjectSettings.asset
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
+=======
+>>>>>>> 697a2ef2f3e6983c2e6efc3af4078a339e7c9935:Dumbspacegamee/ProjectSettings/ProjectSettings.asset
   bundleVersion: 0.1.0
   preloadedAssets: []
   metroInputSource: 0
@@ -192,8 +201,13 @@ PlayerSettings:
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 12.0
+<<<<<<< HEAD:DIGITECHgame/ProjectSettings/ProjectSettings.asset
   VisionOSSdkVersion: 0
   VisionOSTargetOSVersionString: 1.0
+=======
+  bratwurstSdkVersion: 0
+  bratwurstTargetOSVersionString: 16.4
+>>>>>>> 697a2ef2f3e6983c2e6efc3af4078a339e7c9935:Dumbspacegamee/ProjectSettings/ProjectSettings.asset
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIRequiresFullScreen: 1
@@ -242,10 +256,17 @@ PlayerSettings:
   appleDeveloperTeamID: 
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
+<<<<<<< HEAD:DIGITECHgame/ProjectSettings/ProjectSettings.asset
   VisionOSManualSigningProvisioningProfileID: 
   iOSManualSigningProvisioningProfileType: 0
   tvOSManualSigningProvisioningProfileType: 0
   VisionOSManualSigningProvisioningProfileType: 0
+=======
+  bratwurstManualSigningProvisioningProfileID: 
+  iOSManualSigningProvisioningProfileType: 0
+  tvOSManualSigningProvisioningProfileType: 0
+  bratwurstManualSigningProvisioningProfileType: 0
+>>>>>>> 697a2ef2f3e6983c2e6efc3af4078a339e7c9935:Dumbspacegamee/ProjectSettings/ProjectSettings.asset
   appleEnableAutomaticSigning: 0
   iOSRequireARKit: 0
   iOSAutomaticallyDetectAndAddCapabilities: 1
@@ -816,7 +837,10 @@ PlayerSettings:
     QNX: UNITY_POST_PROCESSING_STACK_V2
     Stadia: UNITY_POST_PROCESSING_STACK_V2
     Standalone: UNITY_POST_PROCESSING_STACK_V2
+<<<<<<< HEAD:DIGITECHgame/ProjectSettings/ProjectSettings.asset
     VisionOS: UNITY_POST_PROCESSING_STACK_V2
+=======
+>>>>>>> 697a2ef2f3e6983c2e6efc3af4078a339e7c9935:Dumbspacegamee/ProjectSettings/ProjectSettings.asset
     WebGL: UNITY_POST_PROCESSING_STACK_V2
     XboxOne: UNITY_POST_PROCESSING_STACK_V2
     tvOS: UNITY_POST_PROCESSING_STACK_V2
