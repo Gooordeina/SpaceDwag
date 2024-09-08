@@ -14,7 +14,9 @@ public class asteroidsystemscript : MonoBehaviour
     public bool defaultstepvalue;
     public TRANSFORMSLIST chunks = new TRANSFORMSLIST();
     public float chunknumber = 8;
-    public TRANSFORMS bob = new TRANSFORMS();
+    public float renderdistancel;
+    public GameObject lowerquality;
+    public GameObject higherquiality;
 
 
     void Start()
@@ -35,9 +37,11 @@ public class asteroidsystemscript : MonoBehaviour
             asteroid.localPosition = asteroidposition(i * distancestep) * radius;
             asteroids.Add(asteroid);
             chunkassign(i * distancestep, asteroid);
+            asteroid.localScale = new Vector3(1, 1, 1);
 
 
         }
+        chunkpositionassign();
         
     }
 
@@ -51,10 +55,25 @@ public class asteroidsystemscript : MonoBehaviour
                 asteroids[i].localPosition = asteroidposition(n * distancestep) * radius;
             }
         }
-        for (int i = 0; i < asteroids.Count; i++)
+        for (int i = 0; i <chunknumber; i++)
         {
-            float dist = (asteroids[i].position - Camera.main.transform.position).magnitude;
-            Debug.Log(dist);
+            float disttoplayer = (chunks.chunklist[i].chunkposition - Camera.main.transform.position).magnitude;
+            if(disttoplayer > renderdistancel)
+            {
+                for (int n = 0; n < chunks.chunklist[i].chunkpieces.Count; n++)
+                {
+                    chunks.chunklist[i].chunkpieces[n].gameObject.GetComponent<MeshFilter>().mesh = lowerquality.GetComponent<MeshFilter>().sharedMesh;
+                }
+            }
+            else
+            {
+                for (int n = 0; n < chunks.chunklist[i].chunkpieces.Count; n++)
+                {
+                    chunks.chunklist[i].chunkpieces[n].gameObject.GetComponent<MeshFilter>().mesh = higherquiality.GetComponent<MeshFilter>().sharedMesh;
+                }
+            }
+
+            
         }
 
 
@@ -73,13 +92,30 @@ public class asteroidsystemscript : MonoBehaviour
     void chunkassign(float stepvalue, Transform asteroid)
     {
         float chunksize = (2 * Mathf.PI) / chunknumber;
-        if (0 <= stepvalue && stepvalue < chunksize)
+        int listvalue = Mathf.RoundToInt((stepvalue / chunksize)-0.5f);
+        Debug.Log(listvalue);
+        chunks.chunklist[listvalue].chunkpieces.Add(asteroid);
+
+
+
+    }
+    void chunkpositionassign()
         {
 
+        for (int i = 0; i < chunknumber; i++)
+        {
+            Vector3 overallposition = new Vector3();
+            for (int n = 0; n < chunks.chunklist[i].chunkpieces.Count; n++)
+            {
+                overallposition += (chunks.chunklist[i].chunkpieces[n].position);
+            }
+            Vector3 avgposition = overallposition / chunks.chunklist[i].chunkpieces.Count;
 
+            chunks.chunklist[i].chunkposition= avgposition;
 
         }
 
     }
+
 
 }

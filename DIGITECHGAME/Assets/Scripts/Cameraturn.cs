@@ -10,7 +10,6 @@ public class Cameraturn : MonoBehaviour
     float camerahorizontalrotation;
     float modifiedsensitivity;
     public float rollsensitivity;
-    float cameraroll;
     public Vector3 playerrotation;
     float yintial;
     public GameObject pausegame;
@@ -42,10 +41,10 @@ public class Cameraturn : MonoBehaviour
         }
         float x = Input.GetAxis("Mouse X") * modifiedsensitivity;
         float y = Input.GetAxis("Mouse Y") * -sensitivityy;
-        float r = Input.GetAxis("Roll") * rollsensitivity;
+
         camverticalrotation += y;
         camerahorizontalrotation += x;
-        cameraroll += r;
+  
         transform.localPosition = Vector3.Lerp(new Vector3(x/4, yintial +  y/4, transform.localPosition.z), new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), 0.95f);
 
         player.rotation = Quaternion.Euler(camverticalrotation, camerahorizontalrotation, player.transform.rotation.y);
