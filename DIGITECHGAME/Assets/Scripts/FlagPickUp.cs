@@ -14,9 +14,16 @@ public class FlagPickUp : MonoBehaviour
     public int scoreCount;
         public Text coinText;
     public int coinCount;
-   
+    public GameObject coinandflagspawner;
+    public GameObject pausem;
     public GameObject planets;
+    public GameObject glowtrigger;
 
+    private void Start()
+    {
+        Flag = 0;
+        Coins = 0;
+    }
     void Update()
     {
 
@@ -30,17 +37,19 @@ public class FlagPickUp : MonoBehaviour
             {
                 float childist = (child.transform.position - transform.position).magnitude;
 
-                if(childist < hitboxrange)
+                if(childist < hitboxrange && child.gameObject.activeSelf)
                 {
                     if(child.tag == "CO")
-                {
+                    {
                     Flag += 1;
-                }
-                else{
+
+                    }
+                    else{
                     Coins += 1;
-                }   
-                    Destroy(child.gameObject);
+                    }
+                    child.gameObject.SetActive(false);
                 }
+                
             }
         }
         loopstep += 1;
@@ -49,7 +58,20 @@ public class FlagPickUp : MonoBehaviour
             loopstep = 0;
         }
         
-        scoreText.text = "Flag: " + Mathf.Round(Flag);
+        scoreText.text = "Flag: " + Mathf.Round(Flag) + "/3";
         coinText.text = "Coin: " + Mathf.Round(Coins);
+        if(Flag == 3 )
+        {
+            foreach (Transform child in objectivelist[loopstep])
+            {
+                    child.gameObject.SetActive(true);
+            }
+
+            coinandflagspawner.GetComponent<Coinandflagspawner>().activate();
+            pausem.GetComponent<PauseM>().resettimer();
+            glowtrigger.GetComponent<glowtrigger>().Reset();
+            Flag = 0;
+        }
     }
+
 }

@@ -8,11 +8,12 @@ public class Gravity : MonoBehaviour
     public float multiplier;
     public bool timemain;
     public List<GameObject> blacklst;
-
+    public List<GameObject> materialholders;
     public float DetectiveRadius;
     public float selfmass = 10; 
     public bool moon;
     Rigidbody self;
+    public bool dontapplyforce;
     private void Start()
     {
         self = transform.GetComponent<Rigidbody>(); 
@@ -32,8 +33,11 @@ public class Gravity : MonoBehaviour
                     {
                     force = force * multiplier;
                 }
-                
-                self.AddForce(dir * force * 10000, ForceMode.Force);
+                if(!dontapplyforce)
+                {
+                    self.AddForce(dir * force * 10000, ForceMode.Force);
+                }
+               
                 
             }
             

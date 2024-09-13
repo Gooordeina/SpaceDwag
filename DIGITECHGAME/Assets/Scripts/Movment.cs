@@ -57,7 +57,11 @@ public class Movment : MonoBehaviour
                     {
                         speed += accelerateamount;
                     }
-                    if(vol.profile.TryGet(out ChromaticAberration chromab))
+                    if (speed > 50)
+                    {
+                        speed -= accelerateamount *10;
+                    }
+                    if (vol.profile.TryGet(out ChromaticAberration chromab))
                     {
                         chromab.intensity.value = 1;
                     }
@@ -103,10 +107,15 @@ public class Movment : MonoBehaviour
             else{
                     if(speed > basespeed)
                     {
-                        speed -= accelerateamount;
+                        speed -= accelerateamount * 10;
                         
                     }
-                    if(vol.profile.TryGet(out ChromaticAberration chromab))
+                if (speed < basespeed)
+                {
+                    speed += accelerateamount;
+
+                }
+                if (vol.profile.TryGet(out ChromaticAberration chromab))
                     {
                         chromab.intensity.value = 0.25f;
                     }
@@ -161,10 +170,14 @@ public class Movment : MonoBehaviour
     }
 
 
-     
-     void hyperdrive()
-     {
 
-     }
-     
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "dangerous")
+        {
+            Debug.Log("Bob");
+            transform.gameObject.SetActive(false);
+        }
+    }
+
 }

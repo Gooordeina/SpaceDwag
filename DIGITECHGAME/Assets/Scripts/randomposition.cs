@@ -46,9 +46,10 @@ public class randomposition : MonoBehaviour
         else{
             zpnn = 1;
         }
-        transform.localPosition = new Vector3(Random.Range(planetscale.x,planetscale.x*1.1f) * xpnn, Random.Range(planetscale.x,planetscale.x*1.1f) * ypnn,Random.Range(planetscale.x,planetscale.x*1.1f) * zpnn);  
+            transform.localPosition = new Vector3(Random.Range(planetscale.x, planetscale.x * 1.1f) * xpnn, Random.Range(planetscale.x, planetscale.x * 1.1f) * ypnn, Random.Range(planetscale.x, planetscale.x * 1.1f) * zpnn);
+
         }
-        if(coin)
+        if (coin)
         {
         self = transform.GetComponent<Rigidbody>();
         float xpnn = 0;
@@ -80,8 +81,9 @@ public class randomposition : MonoBehaviour
         else{
             zpnn = 1;
         }
-        transform.localPosition = new Vector3(Random.Range(planetscale.x,planetscale.x*1.1f) * xpnn, Random.Range(planetscale.x,planetscale.x*1.1f) * ypnn,Random.Range(planetscale.x,planetscale.x*1.1f) * zpnn);
+            transform.localPosition = new Vector3(Random.Range(planetscale.x, planetscale.x * 1.1f) * xpnn, Random.Range(planetscale.x, planetscale.x * 1.1f) * ypnn, Random.Range(planetscale.x, planetscale.x * 1.1f) * zpnn);
         }
+        
 
 
     }
@@ -93,14 +95,18 @@ public class randomposition : MonoBehaviour
             foreach (GameObject planet in player.GetComponent<Movment>().planets)
         {
             float dist = (transform.position - planet.transform.position).magnitude;
+               
             if (dist < planet.GetComponent<Gravity>().DetectiveRadius)
             {
-
-                self.velocity = planet.transform.GetComponent<Rigidbody>().velocity;    
+                    self.velocity = planet.transform.GetComponent<Rigidbody>().velocity;    
 
             }
             
         }
+        }
+        if(player.GetComponent<FlagPickUp>().Flag ==3)
+        {
+            Start();
         }
     }
 }

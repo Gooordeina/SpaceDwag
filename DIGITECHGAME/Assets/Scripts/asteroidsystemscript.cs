@@ -17,6 +17,7 @@ public class asteroidsystemscript : MonoBehaviour
     public float renderdistancel;
     public GameObject lowerquality;
     public GameObject higherquiality;
+    public Vector3 asteroidscale;
 
 
     void Start()
@@ -37,7 +38,8 @@ public class asteroidsystemscript : MonoBehaviour
             asteroid.localPosition = asteroidposition(i * distancestep) * radius;
             asteroids.Add(asteroid);
             chunkassign(i * distancestep, asteroid);
-            asteroid.localScale = new Vector3(1, 1, 1);
+            asteroid.localScale = asteroidscale;
+            asteroid.localRotation = Quaternion.Euler(Random.Range(-360,360), Random.Range(-360, 360), Random.Range(-360, 360));
 
 
         }

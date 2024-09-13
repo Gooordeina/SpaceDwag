@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseM : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class PauseM : MonoBehaviour
     public GameObject PauseUI;
 
 
-    public GameObject objectivesystem;
+    public GameObject flagpickup;
 
-    [SerializeField] TextMeshProUGUI timerText;
+    public Text timerText;
     [SerializeField] float CDTime;
 
     void Start()
@@ -25,6 +26,8 @@ public class PauseM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GamePause)
@@ -48,6 +51,8 @@ public class PauseM : MonoBehaviour
         int minutes = Mathf.FloorToInt(CDTime / 60);
         int seconds = Mathf.FloorToInt(CDTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    
+
     }
 
     public void Resume ()
@@ -81,11 +86,15 @@ public class PauseM : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        FlagPickUp fp = objectivesystem.GetComponent<FlagPickUp>();
+        FlagPickUp fp = flagpickup.GetComponent<FlagPickUp>();
         fp.Coins = 0;
         fp.Flag = 0;
         Resume();
 
+    }
+    public  void resettimer()
+    {
+        CDTime = 120;
     }
 
 }
