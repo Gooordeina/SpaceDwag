@@ -11,14 +11,17 @@ public class PauseM : MonoBehaviour
 
     public GameObject PauseUI;
 
-
+    public GameObject endgameui;
+    bool gameover;
+    public GameObject gui;
     public GameObject flagpickup;
-
+    public GameObject player;
     public Text timerText;
-    [SerializeField] float CDTime;
+    public float CDTime;
 
     void Start()
     {
+        gameover = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -28,7 +31,7 @@ public class PauseM : MonoBehaviour
     {
 
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameover)
         {
             if (GamePause)
             {
@@ -47,6 +50,8 @@ public class PauseM : MonoBehaviour
         else if (CDTime < 0)
         {
             CDTime = 0;
+            StartCoroutine(player.GetComponent<Movment>().endscreentrigger());
+
         }
         int minutes = Mathf.FloorToInt(CDTime / 60);
         int seconds = Mathf.FloorToInt(CDTime % 60);
@@ -91,6 +96,16 @@ public class PauseM : MonoBehaviour
         fp.Flag = 0;
         Resume();
 
+    }
+    public void endscreen()
+    {
+        gui.SetActive(false);
+        gameover = true;
+        endgameui.SetActive(true);
+        Time.timeScale = 0f;
+        GamePause = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     public  void resettimer()
     {

@@ -14,17 +14,18 @@ public class Movment : MonoBehaviour
     public Color thrustcolour;
     public Color normalcolour;
     public List<GameObject> planets;
+    public GameObject playermodel;
     float sockspeed;
     public Vector3 dirc;
-
+    public GameObject pausem;
     public Material mymat;
     public  Vector3 dirv;
-
+    public GameObject explosionparticles;
     public float dirdif;
     public float borderradius;
     public float distance;
     public float accelerateamount;
-    bool blackholing = false;
+    public bool gameover;
     [SerializeField] private Volume vol;
     public GameObject centre;
     float interum;
@@ -80,11 +81,15 @@ public class Movment : MonoBehaviour
             mymat.SetColor("_Emission", normalcolour * 20);
             
             }
-                float horizontal = Input.GetAxisRaw("Horizontal");
-                float vertical = Input.GetAxisRaw("Vertical");
-                self.velocity = transform.forward * speed * vertical + transform.right * speed * horizontal + planet.transform.GetComponent<Rigidbody>().velocity;    
-                blackholing = false;
-                interum+=1;
+                if(!gameover)
+                {
+                    float horizontal = Input.GetAxisRaw("Horizontal");
+                    float vertical = Input.GetAxisRaw("Vertical");
+                    self.velocity = transform.forward * speed * vertical + transform.right * speed * horizontal + planet.transform.GetComponent<Rigidbody>().velocity;
+
+                    interum += 1;
+                }
+         
                 
             }
         }
@@ -104,7 +109,7 @@ public class Movment : MonoBehaviour
                     }
                     mymat.SetColor("_Emission", thrustcolour * 20);
                 }
-            else{
+                else{
                     if(speed > basespeed)
                     {
                         speed -= accelerateamount * 10;
@@ -127,16 +132,16 @@ public class Movment : MonoBehaviour
             dirv = self.velocity.normalized;
             dirdif = (dirc-dirv).magnitude;
             if(transform.position.magnitude > borderradius && dirdif <= 1)
-                {
+            {
                     speed = basespeed * 1/(transform.position.magnitude - borderradius);
-                }
-
+            }
+            if(!gameover)
+            {
                 float horizontal = Input.GetAxisRaw("Horizontal");
-                    float vertical = Input.GetAxisRaw("Vertical");
-                    self.velocity = transform.forward * speed * vertical + transform.right * speed * horizontal;    
-                    blackholing = false;
+                float vertical = Input.GetAxisRaw("Vertical");
+                self.velocity = transform.forward * speed * vertical + transform.right * speed * horizontal;
+            }
 
-               
         }
         if (distance >21)
         {
@@ -165,7 +170,7 @@ public class Movment : MonoBehaviour
     {
         direction = blackholecentre - transform.position;
         sockspeed = suckspeed;
-        blackholing = true;
+
         bc = blackholecentre;
     }
 
@@ -175,9 +180,21 @@ public class Movment : MonoBehaviour
     {
         if(collision.gameObject.tag == "dangerous")
         {
-            Debug.Log("Bob");
-            transform.gameObject.SetActive(false);
+
+            StartCoroutine(endscreentrigger());
+        }
+        if(collision.gameObject.tag == "Gravity")
+            {
+
+            StartCoroutine(endscreentrigger());
         }
     }
-
+    public IEnumerator endscreentrigger()
+    {
+        explosionparticles.SetActive(true);
+        gameover = true;
+        playermodel.SetActive(false);
+        yield return new  WaitForSeconds(1.5f);
+        pausem.GetComponent<PauseM>().endscreen();
+    }
 }

@@ -6,21 +6,30 @@ using UnityEngine.UI;
 public class FlagPickUp : MonoBehaviour
 {
 
-    public float Flag;
-    public float Coins;
+    public int Flag;
+    public int Coins;
+    public int coingather;
     public int loopstep = 0;
     public float hitboxrange = 5;
     public Text scoreText;
+    public Text scoreText2;
     public int scoreCount;
-        public Text coinText;
+    public Text coinText;
+    public Text coinText2;
     public int coinCount;
     public GameObject coinandflagspawner;
     public GameObject pausem;
     public GameObject planets;
     public GameObject glowtrigger;
-
+    public float totalflag;
+    float time;
+    public bool savetime;
+    public bool savecoins;
+    public Text besttimescore;
+    public float besttime = 0;
     private void Start()
     {
+        totalflag = 0;
         Flag = 0;
         Coins = 0;
     }
@@ -41,36 +50,59 @@ public class FlagPickUp : MonoBehaviour
                 {
                     if(child.tag == "CO")
                     {
-                    Flag += 1;
+                        Flag += 1;
+                        totalflag += 1;
 
                     }
                     else{
                     Coins += 1;
+                        coingather += 1;
+                        savetime = true;
+                        savecoins = true;
+                        savesystem.saveplayer(this);
+                        coingather -= 1;
                     }
                     child.gameObject.SetActive(false);
                 }
                 
             }
         }
-        loopstep += 1;
-        if(loopstep > looplength)
-        {
-            loopstep = 0;
-        }
+
         
         scoreText.text = "Flag: " + Mathf.Round(Flag) + "/3";
         coinText.text = "Coin: " + Mathf.Round(Coins);
-        if(Flag == 3 )
+        scoreText2.text = "Flag: " + Mathf.Round(totalflag);
+        coinText2.text = "Coin: " + Mathf.Round(Coins);
+        if (Flag == 3 )
         {
-            foreach (Transform child in objectivelist[loopstep])
+            time = pausem.GetComponent<PauseM>().CDTime;
+            if(besttime < time)
             {
-                    child.gameObject.SetActive(true);
+                besttime = time;
             }
-
+            for(int i = 0; i < objectivelist.Count; i++)
+            {
+                foreach (Transform child in objectivelist[i])
+                {
+                    Debug.Log(child);
+                    child.gameObject.SetActive(true);
+                }
+            }   
+            besttimescore.text = "Fastest Time: " + Mathf.Round (120 - besttime) + " Seconds";
+            
             coinandflagspawner.GetComponent<Coinandflagspawner>().activate();
             pausem.GetComponent<PauseM>().resettimer();
             glowtrigger.GetComponent<glowtrigger>().Reset();
             Flag = 0;
+            savecoins = false;
+            savetime = true;
+            savesystem.saveplayer(this);
+            
+        }
+        loopstep += 1;
+        if (loopstep > looplength)
+        {
+            loopstep = 0;
         }
     }
 

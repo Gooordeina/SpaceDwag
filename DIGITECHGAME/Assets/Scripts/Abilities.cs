@@ -22,7 +22,6 @@ public class Abilities : MonoBehaviour
     public float radartime;
     public float horizontalshift;
     public float acelerationspeed = 50;
-    bool radaroncooldown = false;
     float RTIME;
     public  float  radarcooldown;
     public Text cooldowntext;
@@ -49,7 +48,7 @@ public class Abilities : MonoBehaviour
         RTIME += Time.deltaTime;
         d = (blackhole.transform.position - transform.position).magnitude;
         blackholetimer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.T) && !blackhole.gameObject.active)
+        if (Input.GetKeyDown(KeyCode.T) && !blackhole.gameObject.activeSelf)
         {
             Blackhole();
         }
@@ -74,7 +73,7 @@ public class Abilities : MonoBehaviour
     void radar()
     {
         StartCoroutine(scale());
-        radaroncooldown = true;
+
         RTIME = 0;
     }
     public IEnumerator changeintensity(Transform Planet)

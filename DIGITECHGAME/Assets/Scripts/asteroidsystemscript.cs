@@ -95,7 +95,6 @@ public class asteroidsystemscript : MonoBehaviour
     {
         float chunksize = (2 * Mathf.PI) / chunknumber;
         int listvalue = Mathf.RoundToInt((stepvalue / chunksize)-0.5f);
-        Debug.Log(listvalue);
         chunks.chunklist[listvalue].chunkpieces.Add(asteroid);
 
 

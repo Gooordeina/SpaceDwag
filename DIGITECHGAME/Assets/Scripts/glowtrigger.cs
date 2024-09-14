@@ -92,14 +92,10 @@ public class glowtrigger : MonoBehaviour
     {
 
 
-
-
-        Debug.Log(planettexts.Count);
         if (plist.Count >= 1)
         {
             for (int i = 0; i < plist.Count; i++)
             {
-                Debug.Log(i);
                 planettexts[i].text = plist[i].name;
                 
             }

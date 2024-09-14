@@ -12,6 +12,7 @@ public class Cameraturn : MonoBehaviour
     public float rollsensitivity;
     public Vector3 playerrotation;
     float yintial;
+    public float speed;
     public GameObject pausegame;
     float camverticalrotation;
     // Start is called before the first frame update
@@ -26,7 +27,8 @@ public class Cameraturn : MonoBehaviour
     void Update()
     {
         PauseM pausescript = pausegame.GetComponent<PauseM>();
-        if(!pausescript.GamePause)
+        Movment move = player.gameObject.GetComponent<Movment>();
+        if(!pausescript.GamePause && !move.gameover)
         {
 
         
@@ -49,6 +51,10 @@ public class Cameraturn : MonoBehaviour
 
         player.rotation = Quaternion.Euler(camverticalrotation, camerahorizontalrotation, player.transform.rotation.y);
         playerrotation = player.transform.eulerAngles;
+        }
+        if(move.gameover)
+        {
+            transform.position -= transform.forward * speed * Time.deltaTime;
         }
     }
 }
